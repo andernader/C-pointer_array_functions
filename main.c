@@ -25,6 +25,9 @@ int* find_largest(int arr[], int length);                           //Finds the 
 void print_column_2d_array(int row_no, int column_no, int arr[row_no][column_no], int column_to_print);         //Prints and only prints a specific column of a 2D array.
 void return_column_from_2d(int row_no, int column_no, int arr[row_no][column_no], int column_to_get, int result_array[]); //Gets a specific column from a 2D array and stores it in a 1D array.
 void return_row_from_2d(int row_no, int column_no, int arr[row_no][column_no], int row_to_get, int result_array[]);       //Gets a specific row from a 2D array and stores it in a 1D array.
+int sum_array(const int arr[], int length);
+bool search(const int arr[], int length, int key);
+int inner_product(const int *a, const int *b, int length);
 /////////////////////////////////////////////////////////////////////
 
 int main(void){
@@ -59,6 +62,15 @@ int main(void){
 
     int columns_arr[COLUMN];
     int row_arr[ROW];
+
+    //Put your code under here
+    ////////////////////////////////////////////////
+    int a[] = {1, 2, 3, 4, 5};
+    int b[] = {6, 7, 8, 9, 10};
+    print_arr(a, 5);
+    printf("\n");
+    print_arr(b, 5);
+    printf("\n\nThe inner product of a[] = %d\n", inner_product(a, b, 5));
 
     return 0;
 }
@@ -119,4 +131,29 @@ void return_row_from_2d(int row_no, int column_no, int arr[row_no][column_no], i
         result_array[i] = arr[row_to_get][i];
     }
     return;
+}
+
+int sum_array(const int arr[], int length){
+    int sum = 0;
+    for(int *ptr = arr; ptr < arr + length; ptr++)
+        sum += *ptr;
+
+    return sum;
+}
+
+bool search(const int arr[], int length, int key){
+    for(int *ptr = arr; ptr < arr + length; ptr++){
+        if(*ptr == key)
+            return true;
+    }
+    return false;
+}
+
+int inner_product(const int *a, const int *b, int length){
+    int sum = 0;
+    int *ptr1 = a, *ptr2 = b;
+    for(; ptr1 < a + length; ptr1++){
+        sum += (*ptr1) * (*ptr2++);
+    }
+    return sum;
 }
